@@ -1,5 +1,5 @@
 
-if (document.querySelector('.sale')) {
+if (document.getElementById('option_pag')) {
     let qtdProduct = document.getElementById('qtd_product');
     let parcPrice = document.getElementById('parc_price');
     let qtdParc = document.getElementById('qtd_parc');

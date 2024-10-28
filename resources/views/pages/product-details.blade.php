@@ -42,8 +42,8 @@
                        <select id="form_pag" name="form_pag">
                           <option value="">Selecione a forma de pagamento</option>
                           <option value="Boleto">Boleto</option>
-                          <option value="Boleto">Pix</option>
-                          <option value="Boleto">Cartão de Crédito</option>
+                          <option value="Pix">Pix</option>
+                          <option value="Cartão de Crédito">Cartão de Crédito</option>
                        </select>
                      </div>
                      <div class="product-venc top">

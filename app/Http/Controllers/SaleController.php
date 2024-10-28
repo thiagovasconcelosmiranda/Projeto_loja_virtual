@@ -109,7 +109,9 @@ class SaleController extends Controller
       
       
       if(!empty($request['product_id']) && !empty($request['option_pag']) &&
-      !empty($request['qtd_parc']) && !empty($request['price_parc']) && !empty($request['subtotal_product'])){
+      !empty($request['qtd_parc']) && !empty($request['price_parc']) &&
+       !empty($request['subtotal_product']) && !empty($request['form_pag']) &&
+        !empty($request['data_venc']) && !empty($request['seller_id']) &&){
        
        if($id = self::create($request)){
            if($this->installment->create($request, $id)){

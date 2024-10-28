@@ -1,4 +1,4 @@
-if(document.querySelector('.sale')){
+if(document.getElementById('search')){
   let input = document.getElementById('search');
   
   input.addEventListener('input', ()=>{

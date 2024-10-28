@@ -6,7 +6,8 @@ if (document.querySelector('.product_details')) {
   let select = document.getElementById('select-i');
   let subtotal = document.getElementById('subtotal');
   let id = document.querySelector('.product_details').getAttribute('data-id');
-
+  let formPag = document.getElementById('form_pag');
+  
   back.addEventListener('click', () => {
     count--;
     if (count == 0) {
@@ -28,6 +29,7 @@ if (document.querySelector('.product_details')) {
       calcPrice(res.price, count);
     });
   }
+
   function calcPrice(price, qtd) {
     let num = parseFloat(price * qtd).toFixed(2);
 
@@ -79,12 +81,12 @@ if (document.querySelector('.product_details')) {
 
 
   document.getElementById('button-sale').addEventListener('click', ajaxCreateSale);
- 
+
   function addObject() {
     let qtdProduct = document.getElementById('visible');
     let subtotal = document.getElementById('subtotal').innerHTML.split(' ');
     let inputSeller = document.getElementById('seller-select');
-    let formPag = document.getElementById('form_pag');
+
     let dataVenc = document.getElementById('data_venc');
 
     list = select.value.split('|');
@@ -105,7 +107,20 @@ if (document.querySelector('.product_details')) {
       sale.option_pag = 'À vista';
     }
   }
-  
+
+  formPag.addEventListener('click', (e) => {
+    let formParc = document.querySelector('.product-parc');
+    let input = e.target.value;
+
+    if (input) {
+      if (input === 'Boleto' || input === 'Pix') {
+        formParc.style.display = 'none';
+      } else {
+        formParc.style.display = 'block';
+      }
+    }
+  });
+
   async function ajaxCreateSale() {
     addObject();
     let data = new FormData();
@@ -121,24 +136,24 @@ if (document.querySelector('.product_details')) {
 
     var req = await fetch(`http://127.0.0.1:8000/ajax/venda/create`, {
       method: 'POST',
-      headers:{
+      headers: {
         "X-Requested-With": "XMLHttpRequest",
         "X-CSRF-Token": $('input[name="_token"]').val()
       },
 
-     body: data
+      body: data
     });
 
     var json = await req.json();
     console.log(json);
 
-    if(json.error != ''){
+    if (json.error != '') {
       alert(json.error);
       return;
     }
 
     window.location.href = 'http://127.0.0.1:8000/vendas';
-  
+
   }
 
 }
