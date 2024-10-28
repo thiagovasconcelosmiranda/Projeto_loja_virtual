@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(18, 9, 37)
+}
+
+li{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+}
+button:hover{
+    opacity: 0.7;
+}
+
+@import './partials/header';
+@import './partials/footer';
+@import './partials/layout';
+@import './partials/card';
+@import './partials/sign';
+@import './partials/sale';
+@import './partials/alertMessage';
+@import './partials/product_details';

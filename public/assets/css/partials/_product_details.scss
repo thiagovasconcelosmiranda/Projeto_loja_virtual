@@ -1,0 +1,164 @@
+.product_details {
+    height: auto;
+    padding: 30px 0;
+
+    .product-item {
+        width: 80%;
+        margin: auto;
+        border: 1px solid gray;
+        padding: 10px;
+
+        .product_details_row {
+            display: flex;
+            align-items: center;
+
+            .product_details_col {
+                width: 80%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+
+
+                .image {
+                    width: 80%;
+                    height: auto;
+                    display: flex;
+                    justify-content: center;
+
+                    img {
+                        width: 100%;
+                    }
+
+                }
+
+                .seller{
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+                  padding: 30px 0;
+                  select{
+                    width: 50%;
+                    padding: 10px;
+                    outline-color: blue;
+                  }
+                }
+                
+                .product-description {
+                    width: 100%;
+                    height: inherit;
+                    gap: 50px;
+
+                    .top {
+                        margin-top: 30px;
+                    }
+
+                    .product-title{
+                        h2{
+                            font-weight: 200;
+                        }
+                    }
+
+
+
+                    .price-item {
+                        display: flex;
+                        align-items: center;
+                        p{
+                          span{
+                            font-weight: bold;
+                            font-size: 30px;
+                            color: blue;
+                          }
+                        }
+
+                    }
+
+                    .qtd-product {
+                        width: 100%;
+                        display: flex;
+                        align-items: center;
+
+                        .click-back,
+                        .click-next {
+                            width: 30px;
+                            height: 30px;
+                            background-color: rgb(201, 198, 198);
+                            padding: 5px;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            cursor: pointer;
+                            font-size: 30px;
+                        }
+
+                        .visible_qtd {
+                            width: 30px;
+                            height: 30px;
+                            border: 1px solid gray;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        .click-back:hover,
+                        .click-next:hover {
+                            opacity: 0.7;
+                        }
+
+                    }
+                    .product-parc{
+                        p{
+                            font-size: 14px;
+                            padding: 10px 0;
+                        }
+                        select{
+                            padding: 10px;
+                        }
+                    }
+                    .price_subtotal{
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+
+                    .price_form_pag,
+                    .product-venc{
+                        display: flex;
+                        flex-direction: column;
+                        
+                        select, input{
+                            width: 50%;
+                            padding: 10px;
+                        }
+                    }
+                }
+                .button-sale{
+                    width: 100%;
+                    display: flex;
+                    justify-content: end;
+                    button{
+                        padding: 15px 30px;
+                        background-color: green;
+                        color: #fff;
+                        border-radius: 25px;
+                        outline: 0;
+                        border: 0;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 700px){
+    .product_details {
+        .product-item {
+            width: 100%;
+            .product_details_row {
+            flex-direction: column;
+            }
+        }
+    }
+}
