@@ -23,7 +23,6 @@ class SaleController extends Controller
 
     private function create( Request $request){
         $s = new $this->sale;
-        $s->option_pag = $request['option_pag'];
         $s->qtd_product = $request['qtd_product'];
         $s->form_pag = $request['form_pag'];
         $s->subtotal_product = floatval($request['subtotal_product']);
@@ -62,15 +61,17 @@ class SaleController extends Controller
     }
 
     public function findId($id){
-      return $this->sale
+      $data = $this->sale
       ->join('installments','installments.sale_id','=', 'sales.id')
       ->join('products','products.id','=','sales.product_id')
       ->join('users','users.id','=','sales.user_id')
       ->join('sellers','sellers.id','=','sales.seller_id')
       ->where('sales.id',$id)
       ->first();
+      return $data;
     }
 
+    
     /**
      * Summary of searchSale
      * @param mixed $search
@@ -107,11 +108,10 @@ class SaleController extends Controller
     public function createItem (Request $request){
       $array = ['error'=>''];
       
-      
-      if(!empty($request['product_id']) && !empty($request['option_pag']) &&
-      !empty($request['qtd_parc']) && !empty($request['price_parc']) && 
-      !empty($request['subtotal_product']) && !empty($request['form_pag']) &&
-      !empty($request['data_venc']) && !empty($request['seller_id'])){
+      if(!empty($request['product_id']) && !empty($request['qtd_parc']) && 
+      !empty($request['price_parc']) && !empty($request['subtotal_product']) &&
+       !empty($request['form_pag']) && !empty($request['data_venc']) 
+       && !empty($request['seller_id'])){
        
        if($id = self::create($request)){
            if($this->installment->create($request, $id)){
@@ -151,7 +151,6 @@ class SaleController extends Controller
      return $this->sale
      ->where('id', $id)
      ->update([
-      'option_pag' => $request['option_pag'],
       'form_pag' => $request['form_pag'],
       'qtd_product' => $request['qtd_product'],
       'subtotal_product' => floatval($request['subtotal_product']),

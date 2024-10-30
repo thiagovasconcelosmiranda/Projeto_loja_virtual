@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Installment;
+use App\Models\installment;
 use Illuminate\Http\Request;
 
-class installmentController extends Controller
+class InstallmentController extends Controller
 {
 
     /**
@@ -16,7 +16,7 @@ class installmentController extends Controller
      */
     public function create(Request $request, $saleId){
 
-      $i = new  Installment();
+      $i = new installment();
       $i->qtd_parc = $request['qtd_parc'];
       $i->data_venc = $request['data_venc'];
       $i->sale_id = $saleId;

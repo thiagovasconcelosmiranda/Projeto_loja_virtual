@@ -34,7 +34,6 @@ if(document.getElementById('search')){
          <th>DESC PRODUTO</th>
          <th>QTD DO PRODUTO</th>
          <th>FORMA DE PAGAMENTO</th>
-         <th>OPÇÃO PAGAMENTO</th>
          <th>QTD PARCELAS</th>
          <th>VALOR PARCELA</th>
          <th>SUBTOTAL</th>
@@ -51,7 +50,6 @@ if(document.getElementById('search')){
                     <td>${item.description}</td>
                     <td>${item.qtd_product}</td>
                      <td>${item.form_pag}</td>
-                    <td>${item.option_pag}</td>
                     <td>${item.qtd_parc} x</td>
                     <td>R$ ${item.parc_price}</td>
                     <td>R$ ${item.subtotal_product}</td>
@@ -68,4 +66,6 @@ if(document.getElementById('search')){
       `;
      })
   }
+  
+
 }

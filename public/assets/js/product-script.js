@@ -83,11 +83,11 @@ if (document.querySelector('.product_details')) {
   document.getElementById('button-sale').addEventListener('click', ajaxCreateSale);
 
   function addObject() {
+     const date = new Date();
+     let dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
     let qtdProduct = document.getElementById('visible');
     let subtotal = document.getElementById('subtotal').innerHTML.split(' ');
     let inputSeller = document.getElementById('seller-select');
-
-    let dataVenc = document.getElementById('data_venc');
 
     list = select.value.split('|');
 
@@ -99,7 +99,7 @@ if (document.querySelector('.product_details')) {
     sale.subtotal_product = subtotal[1];
     sale.form_pagm = formPag.value;
     sale.seller_id = inputSeller.value;
-    sale.data_venc = dataVenc.value;
+    sale.data_venc = dateFormat;
 
     if (list[0] > '1') {
       sale.option_pag = 'Parcelado';
@@ -123,6 +123,7 @@ if (document.querySelector('.product_details')) {
 
   async function ajaxCreateSale() {
     addObject();
+    console.log(sale);
     let data = new FormData();
     data.append('product_id', sale.product_id);
     data.append('option_pag', sale.option_pag);

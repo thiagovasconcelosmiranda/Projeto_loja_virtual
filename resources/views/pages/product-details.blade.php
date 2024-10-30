@@ -46,10 +46,6 @@
                           <option value="Cartão de Crédito">Cartão de Crédito</option>
                        </select>
                      </div>
-                     <div class="product-venc top">
-                        <p>Data de vencimento:</p>
-                        <input id="data_venc" type="date" name="data_venc">
-                    </div>
                      <div class="product-parc top">
                          <p>Parcelas:</p>
                           <select name="parc" id="select-i"></select>

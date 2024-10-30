@@ -15,6 +15,7 @@ class ProductController extends Controller
   }
 
   public function index($id){
+
     return view('Pages/product-details', [
       'product' => self::show($id),
       'sellers' => self::getSeller()
