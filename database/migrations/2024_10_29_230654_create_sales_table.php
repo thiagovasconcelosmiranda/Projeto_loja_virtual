@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-            $table->string('option_oag', 80);
             $table->integer('qtd_product');
             $table->decimal('subtotal_product');
             $table->unsignedBigInteger('product_id');
@@ -23,7 +22,6 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('seller_id')->references('id')->on('sellers');
-
             $table->timestamps();
         });
     }
