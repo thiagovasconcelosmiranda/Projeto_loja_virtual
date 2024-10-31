@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('installments', function (Blueprint $table) {
             $table->id();
-            $table->integer('qtd_prod');
-            $table->string('data_seller', 80);
+            $table->integer('qtd_parc');
+            $table->string('data_venc', 80);
             $table->decimal('parc_price');
             
             $table->unsignedBigInteger('sale_id');

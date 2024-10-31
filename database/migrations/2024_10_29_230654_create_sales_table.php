@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->string('form_pag', 80);
             $table->integer('qtd_product');
             $table->decimal('subtotal_product');
             $table->unsignedBigInteger('product_id');

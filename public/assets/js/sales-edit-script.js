@@ -52,12 +52,20 @@ if (document.getElementById('form_pag') &&
 
     function generationParc() {
         select.innerHTML = "";
+        let inputVenc = document.getElementById('data_venc').value;
+        
+        let dateVenc = inputVenc.split('/');
+        let invertDate = `${dateVenc[2]}/${dateVenc[1]}/ ${dateVenc[0]}`;
 
+        let time = new DateFormate();
+        time = time.invertDate(invertDate);
+       
         let num = parseInt(qtdParc.value);
         for (let i = 1; i <= num; i++) {
+
             const date = new Date();
-            let dateFormat = `${date.getDay()}/${date.getMonth() + i}/${date.getFullYear()}`;
-            console.log(dateFormat);
+            let dateFormat = `${time[0]}/${time[1] + i}/${time[2]}`;
+
             let parcPrice = parseFloat(subtotalProduct.innerText);
             let newPrice = (parcPrice.toFixed(2) / i).toFixed(2);
             let option = document.createElement('option');

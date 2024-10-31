@@ -35,7 +35,7 @@
                      </div>
                      <div class="price_subtotal top">
                         <h3>Total á pagar:</h3>
-                        <h3 id="subtotal">R$ 500.00 </h3>
+                        <h3 id="subtotal"></h3>
                      </div>
                      <div class="price_form_pag top">
                         <h3>Forma de pagamento:</h3>

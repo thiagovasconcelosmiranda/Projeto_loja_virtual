@@ -1,33 +1,32 @@
-if(document.getElementById('search')){
+if (document.getElementById('search')) {
   let input = document.getElementById('search');
-  
-  input.addEventListener('input', ()=>{
-    if(input.value !== ''){
+
+  input.addEventListener('input', () => {
+    if (input.value !== '') {
       ajaxSearchSale(input.value);
-    }else{
-       ajaxSearchSale(null);
+    } else {
+      ajaxSearchSale(null);
     }
   });
 
   ajaxSearchSale(null);
-
-  async function ajaxSearchSale(input){
-       var req = await fetch(`http://127.0.0.1:8000/ajax/vendas/${input}`,{
-        headers:{
-            "Content-Type": "application/json",
-            "Accept": "application/json",
-            "X-Requested-With": "XMLHttpRequest",
-        }
-       });
-       var json = await req.json();
-       tableSale(json.data);
+  async function ajaxSearchSale(input) {
+    var req = await fetch(`http://127.0.0.1:8000/ajax/vendas/${input}`, {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      }
+    });
+    var json = await req.json();
+    tableSale(json.data);
   }
 
 
-  function tableSale(data){
+  function tableSale(data) {
     let table = document.querySelector('.table_sale');
-    table.innerHTML = 
-    `
+    table.innerHTML =
+      `
       <tr>
          <th>IMGAEM PRODUTO</th>
          <th>VENDEDOR</th>
@@ -41,15 +40,15 @@ if(document.getElementById('search')){
       </tr>
     `;
 
-     data.map(item => {
-      table.innerHTML += 
-      `
+    data.map(item => {
+      table.innerHTML +=
+        `
                 <tr>
                     <td><img src='/assets/images/products/${item.image}'/></td>
                     <td>${item.name_seller}</td>
                     <td>${item.description}</td>
                     <td>${item.qtd_product}</td>
-                     <td>${item.form_pag}</td>
+                    <td>${item.form_pag}</td>
                     <td>${item.qtd_parc} x</td>
                     <td>R$ ${item.parc_price}</td>
                     <td>R$ ${item.subtotal_product}</td>
@@ -64,8 +63,6 @@ if(document.getElementById('search')){
                     </td>
                 </tr>
       `;
-     })
+    });
   }
-  
-
 }

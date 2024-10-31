@@ -44,6 +44,9 @@ class SaleController extends Controller
        ->join('sellers','sellers.id','=','sales.seller_id')
        ->get();
     }
+    
+
+    
 
     private function findSearch($search){
         return $this->sale
@@ -55,8 +58,6 @@ class SaleController extends Controller
         ->orWhere('products.description', 'like', '%' . $search . '%')
         ->orWhere('products.price', 'like', '%' . $search . '%')
         ->orWhere('installments.parc_price', 'like', '%' . $search . '%')
-        ->orWhere('installments.qtd_parc', 'like', '%' . $search . '%')
-        ->orWhere('sales.option_pag', 'like', '%' . $search . '%')
         ->get();
     }
 

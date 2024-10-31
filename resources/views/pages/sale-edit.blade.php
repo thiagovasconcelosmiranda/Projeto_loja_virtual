@@ -39,7 +39,7 @@
                 </div>
                 <div class="input-item">
                   <label for="">Data vencimento:</label>
-                  <input type="text" value="{{$sale['data_venc']}}" name="data_venc">
+                  <input id="data_venc" type="text" value="{{$sale['data_venc']}}" name="data_venc">
                 </div>
                 <div class="input-item">
                     <label>Quantidade do produto:</label>

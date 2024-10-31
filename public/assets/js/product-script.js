@@ -7,7 +7,7 @@ if (document.querySelector('.product_details')) {
   let subtotal = document.getElementById('subtotal');
   let id = document.querySelector('.product_details').getAttribute('data-id');
   let formPag = document.getElementById('form_pag');
-  
+
   back.addEventListener('click', () => {
     count--;
     if (count == 0) {
@@ -83,14 +83,14 @@ if (document.querySelector('.product_details')) {
   document.getElementById('button-sale').addEventListener('click', ajaxCreateSale);
 
   function addObject() {
-     const date = new Date();
-     let dateFormat = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`;
+    let time = new DateFormate();
+    time = time.invertDate('');
+
     let qtdProduct = document.getElementById('visible');
     let subtotal = document.getElementById('subtotal').innerHTML.split(' ');
     let inputSeller = document.getElementById('seller-select');
 
     list = select.value.split('|');
-
     sale.product_id = id;
     let priceParc = list[1].replace(',', '.');
     sale.qtd_parc = list[0];
@@ -99,7 +99,7 @@ if (document.querySelector('.product_details')) {
     sale.subtotal_product = subtotal[1];
     sale.form_pagm = formPag.value;
     sale.seller_id = inputSeller.value;
-    sale.data_venc = dateFormat;
+    sale.data_venc = `${time[0]}/${time[1]}/${time[2]}`;
 
     if (list[0] > '1') {
       sale.option_pag = 'Parcelado';
@@ -123,7 +123,6 @@ if (document.querySelector('.product_details')) {
 
   async function ajaxCreateSale() {
     addObject();
-    console.log(sale);
     let data = new FormData();
     data.append('product_id', sale.product_id);
     data.append('option_pag', sale.option_pag);
@@ -146,15 +145,12 @@ if (document.querySelector('.product_details')) {
     });
 
     var json = await req.json();
-    console.log(json);
 
     if (json.error != '') {
       alert(json.error);
       return;
     }
-
     window.location.href = 'http://127.0.0.1:8000/vendas';
-
   }
 
 }
