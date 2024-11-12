@@ -6,12 +6,12 @@
        </div>
        <div class="sale_form">
          <div class="sale_user">
-             <h2>Comprador</h2>
+             <h3>Comprador:</h3>
              <p>Name: {{$sale['name']}}</p>
              <p>Email: {{$sale['email']}}</p>
          </div>
          <div class="sale_user">
-          <h2>Vendedor</h2>
+          <h3>Vendedor:</h3>
           <p>Name: {{$sale['name_seller']}}</p>
       </div>
        <div class="sale-product">
@@ -49,13 +49,12 @@
               <div class="group-input">
                 <div class="input-item">
                   <label>Quantidade parcelas:</label>
-                  <input id="qtd_parc" type="number" value="{{$sale['qtd_parc']}}" name="qtd_parc"/>
+                  <input id="qtd_parc" maxlength="2" type="number" value="{{$sale['qtd_parc']}}" name="qtd_parc"/>
+                  <div>Máximo 10 parcelas</div>
                 </div>
                 <div class="input-item">
                   <label>Parcelas à pagar:</label>
-                  <select id="list_parcs" name="list_parcs">
-                    <option value="">Parcelas</option>
-                  </select>
+                  <select id="list_parcs" name="list_parcs"></select>
                 </div>
                 <div class="input-item">
                   <label>Subtotal Produto:</label>

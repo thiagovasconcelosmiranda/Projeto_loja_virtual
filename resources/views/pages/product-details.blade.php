@@ -1,6 +1,6 @@
 @include("templates.header")
 <div class="body-template container">
-    <div class="product_details" data-id="{{$product['id']}}">
+    <div class="product_details" data-id="{{$product['id']}}" data-user-id ="{{$userId}}">
         <div class="product-item">
             <div class="product_details_row">
                 <div class="product_details_col">
@@ -25,8 +25,7 @@
                           <h2>{{$product['description']}}</h2>
                      </div>
                      <div class="price-item top">
-                        <p>Preço:</p>
-                         <p> <span> R$ {{$product['price']}}</span> und.</p>
+                         <p> Preço: R$ <span id="price_und">{{$product['price']}}</span> und.</p>
                      </div>
                      <div class="qtd-product top">
                          <div class="click-back">-</div>

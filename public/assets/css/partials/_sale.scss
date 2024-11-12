@@ -10,7 +10,7 @@
         align-items: center;
 
         h2 {
-            font-weight: 200;
+            font-weight: 600 !important;
         }
     }
 
@@ -20,12 +20,21 @@
         margin: auto;
         margin-top: 20px;
         gap: 20px;
+        h3{
+            font-weight: 200;
+            color: blue;
+        }
+
+        p{
+            font-weight: 100;
+        }
 
         .sale-product,
         .sale_user {
             border: 1px solid gray;
             padding: 10px;
             margin-bottom: 30px;
+            background-color: #fff;
 
             .sale-product-row {
                 display: flex;
@@ -126,6 +135,7 @@
 
             td {
                 font-weight: 200;
+                background-color: #fff;
 
                 img {
                     width: 80px;

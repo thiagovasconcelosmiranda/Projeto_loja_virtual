@@ -8,6 +8,7 @@ if (document.getElementById('form_pag') &&
     let priceProduct = document.getElementById('priceProduct');
     let formPag = document.getElementById('form_pag');
     let select = document.getElementById('list_parcs');
+    let dataVenc = document.getElementById('data_venc');
 
     formPag.addEventListener('click', optionSelect);
 
@@ -16,10 +17,12 @@ if (document.getElementById('form_pag') &&
         if (formPag.value === 'Pix' || formPag.value === 'Boleto') {
             qtdParc.style.display = 'none';
             select.style.display = 'none';
+            dataVenc.style.display = 'block';
             qtdParc.value = 1;
         } else {
             qtdParc.style.display = 'block';
             select.style.display = 'block';
+            dataVenc.style.display = 'none';
         }
         generationParc();
     }
@@ -43,7 +46,8 @@ if (document.getElementById('form_pag') &&
     function calcParc(e) {
         let parc = parseInt(e.target.value);
 
-        if (parc >= 1) {
+
+        if (parc >= 1 && parc <= 10) {
             generationParc();
         }
     }
@@ -59,16 +63,21 @@ if (document.getElementById('form_pag') &&
 
         let time = new DateFormate();
         time = time.invertDate(invertDate);
-       
         let num = parseInt(qtdParc.value);
-        for (let i = 1; i <= num; i++) {
+        let year = time[2];
 
-            const date = new Date();
-            let dateFormat = `${time[0]}/${time[1] + i}/${time[2]}`;
+        for (let i = 1; i <= num; i++) {
+            let month = time[1] + i > '12' ? `0${+i-1}` : parseInt(time[1]+i);
+            if(parseInt(month) == 1){
+                year = (time[2]+i-1);
+            }
+           
+            let dateFormat = `${time[0]}/${month}/${year}`;
 
             let parcPrice = parseFloat(subtotalProduct.innerText);
             let newPrice = (parcPrice.toFixed(2) / i).toFixed(2);
             let option = document.createElement('option');
+
             option.innerHTML = `${i} x - R$ ${newPrice} - ${dateFormat}`;
             select.appendChild(option);
         }

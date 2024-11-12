@@ -12,6 +12,7 @@
         border: 3px solid #000;
         border-radius: 10px;
         padding-top: 10px;
+        background-color: #fff;
 
         .card-img{
             width: 100%;
@@ -73,4 +74,10 @@
           }
         }
     }
+}
+
+@media (max-width: 700px){
+  .cards .card{
+    width: 70%;
+  }
 }

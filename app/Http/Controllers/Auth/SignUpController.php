@@ -24,7 +24,7 @@ class SignUpController extends Controller
         $u->password = $userData['password'];
 
         if($u->save()){
-          return redirect()->route('buy.index');
+          return redirect()->route('sales');
         }else{
             return redirect()->back()->with('error','Erro ao cadastrar!');
         }

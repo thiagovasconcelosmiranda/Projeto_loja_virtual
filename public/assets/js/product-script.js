@@ -7,19 +7,25 @@ if (document.querySelector('.product_details')) {
   let subtotal = document.getElementById('subtotal');
   let id = document.querySelector('.product_details').getAttribute('data-id');
   let formPag = document.getElementById('form_pag');
+  let priceUnd = document.getElementById('price_und');
+  let userId = document.querySelector('.product_details').getAttribute('data-user-id')
 
   back.addEventListener('click', () => {
     count--;
     if (count == 0) {
       count = 1;
     }
+
     productQtd(count);
   });
+
 
   next.addEventListener('click', () => {
     count++;
     productQtd(count);
   });
+
+  priceUnd.innerHTML = formatPrice(priceUnd.innerHTML);
 
   function productQtd(qtd) {
     let input = document.getElementById('visible')
@@ -42,6 +48,8 @@ if (document.querySelector('.product_details')) {
   function parcPrice(price) {
 
     select.innerHTML = '';
+    price = price.replace(',', '.');
+
     for (let i = 1; i < 11; i++) {
       let parc = (price / i)
       parc = parc.toFixed(2);
@@ -72,13 +80,11 @@ if (document.querySelector('.product_details')) {
         }
       });
       let json = await req.json();
-
-      subtotal.innerHTML = `R$ ${json.data.price}`;
+      subtotal.innerHTML = `R$ ${formatPrice(json.data.price)}`;
       parcPrice(json.data.price);
       return json.data;
     }
   }
-
 
   document.getElementById('button-sale').addEventListener('click', ajaxCreateSale);
 
@@ -122,35 +128,47 @@ if (document.querySelector('.product_details')) {
   });
 
   async function ajaxCreateSale() {
-    addObject();
-    let data = new FormData();
-    data.append('product_id', sale.product_id);
-    data.append('option_pag', sale.option_pag);
-    data.append('seller_id', sale.seller_id);
-    data.append('form_pag', sale.form_pagm);
-    data.append('qtd_product', sale.qtd_product);
-    data.append('subtotal_product', sale.subtotal_product);
-    data.append('data_venc', sale.data_venc);
-    data.append('qtd_parc', sale.qtd_parc);
-    data.append('price_parc', sale.price_parc);
 
-    var req = await fetch(`http://127.0.0.1:8000/ajax/venda/create`, {
-      method: 'POST',
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "X-CSRF-Token": $('input[name="_token"]').val()
-      },
+    if (userId > 0) {
 
-      body: data
-    });
 
-    var json = await req.json();
+      addObject();
+      let data = new FormData();
+      data.append('product_id', sale.product_id);
+      data.append('option_pag', sale.option_pag);
+      data.append('seller_id', sale.seller_id);
+      data.append('form_pag', sale.form_pagm);
+      data.append('qtd_product', sale.qtd_product);
+      data.append('subtotal_product', sale.subtotal_product);
+      data.append('data_venc', sale.data_venc);
+      data.append('qtd_parc', sale.qtd_parc);
+      data.append('price_parc', sale.price_parc);
 
-    if (json.error != '') {
-      alert(json.error);
-      return;
+      var req = await fetch(`http://127.0.0.1:8000/ajax/venda/create`, {
+        method: 'POST',
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "X-CSRF-Token": $('input[name="_token"]').val()
+        },
+
+        body: data
+      });
+
+      var json = await req.json();
+
+      if (json.error != '') {
+        alert(json.error);
+        return;
+      }
+      window.location.href = 'http://127.0.0.1:8000/vendas';
+    }else{
+      alert('Para realizar está compra, precisa realizar o login!');
+      window.location.href = 'http://127.0.0.1:8000/auth/signin';
     }
-    window.location.href = 'http://127.0.0.1:8000/vendas';
+  }
+
+  function formatPrice(price) {
+    return price.replace('.', ',');
   }
 
 }

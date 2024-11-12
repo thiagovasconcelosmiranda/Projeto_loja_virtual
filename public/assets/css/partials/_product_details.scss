@@ -5,8 +5,10 @@
     .product-item {
         width: 80%;
         margin: auto;
-        border: 1px solid gray;
+        border: 1px solid rgb(189, 188, 188);
         padding: 10px;
+        background-color: #fff;
+        border-radius: 10px;
 
         .product_details_row {
             display: flex;
@@ -63,6 +65,7 @@
                         display: flex;
                         align-items: center;
                         p{
+                            font-size: 18px;
                           span{
                             font-weight: bold;
                             font-size: 30px;

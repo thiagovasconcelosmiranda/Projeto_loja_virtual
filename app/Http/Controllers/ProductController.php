@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\helper;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,16 +10,23 @@ class ProductController extends Controller
 {
   private $id;
   private $product;
+  
   public function findAll()
   {
     return Product::get();
   }
 
   public function index($id){
+    $userId = 0;
+    
+    if(!empty(helper::auth()['id'])){
+       $userId = helper::auth()['id'];
+    }
 
     return view('Pages/product-details', [
       'product' => self::show($id),
-      'sellers' => self::getSeller()
+      'sellers' => self::getSeller(),
+      'userId' => $userId
     ]);
   }
 
